@@ -1,0 +1,217 @@
+﻿* {
+    padding: 0;
+}
+
+body {
+    background: linear-gradient(rgb(6, 6, 6,0.6),rgb(6, 6, 6,0.6)), url(/Img/residencia.jpeg) !important;
+    background-size: cover !important;
+    color: white !important;
+}
+
+.registro {
+    margin-top: 30px !important;
+    margin-bottom: 30px !important
+}
+
+main {
+    padding-top: 50px
+}
+
+nav {
+    border-bottom: solid 4px aquamarine !important;
+    padding: 10px !important
+}
+
+.enlace-nav {
+    color: darkblue !important;
+    padding-right: 25px !important;
+    padding-left: 25px !important
+}
+
+.enlace-nav:hover{
+    text-decoration: underline 4px aquamarine
+}
+
+footer {
+    border-top: solid 1px rgb(255,255,255,0.5);
+    text-align: center;
+    height: 60px;
+    padding: 10px;
+    background: linear-gradient(rgb(6, 6, 6,0.6),rgb(6, 6, 6,0.6)) !important;
+}
+
+.imagen {
+    font-size: 20px !important;
+    background: linear-gradient(rgb(6, 6, 6,0.2),rgb(6, 6, 6,0.2)), url(/Img/cobro.jpg) !important;
+    background-size: cover !important;
+    margin: 2%;
+    padding: 10px;
+    text-decoration: none;
+    transition: 0.5s;
+    border: solid white 1px;
+    border-radius: 10px;
+    height: 100px
+}
+
+.informacion {
+    color: black !important;
+    border-radius: 15px !important;
+    margin-top: 1% !important;
+    margin-bottom: 1% !important;
+    padding: 15px !important;
+    background-color: aquamarine !important;
+}
+
+/*.noticias {
+    color: aquamarine !important;
+    margin: 1% !important;
+    border-right: dashed aquamarine 7px;
+    padding: 15px !important; 
+    border-bottom: none;
+}
+
+.avisos {
+    margin: 1% !important;
+    padding: 10px !important;
+    border-right: solid rgb(255,255,255,0.4) 1px !important;
+}
+
+.documentos {
+    margin: 1% !important;
+    padding: 10px !important
+}*/
+
+.imagen:hover {
+    font-size: 25px !important;
+    background: linear-gradient(rgb(6,6,6,0.7),rgb(6,6,6,0.7)), url(/Img/cobro.jpg) !important;
+    background-size: cover !important;
+    height: 120px;
+    border: solid aquamarine 4px;
+    border-radius: 10px;
+}
+
+.enlace {    
+    color: aquamarine !important;
+    text-decoration: none !important
+}
+
+.detalle {
+    background: url(/Img/cobro.jpg) !important;
+    background-size: auto !important;
+    background-position: center !important;
+    height: 500px;
+    border-radius: 20px !important
+}
+
+.detalle2 {
+    padding-top: 20px !important;
+    padding-left: 50px !important
+}
+
+.details {
+    color: aquamarine !important;
+    text-decoration: none !important;
+    transition: 0.3s;
+}
+
+.details:hover {
+    text-decoration: underline !important
+}
+
+.regresar {
+    color: aquamarine !important;
+    text-decoration: none !important;
+    padding: 10px;
+    transition: 0.3s;
+    margin-top: 40px !important;
+    border: solid aquamarine 3px !important;
+    border-radius: 7px;
+    background-color: transparent !important
+}
+
+.regresar:hover {
+    background-color: aquamarine !important;
+    color: black !important;
+}
+
+.fila {
+    height: 100px !important
+}
+
+.tabla {
+    background: linear-gradient(rgb(6, 6, 6,0.8),rgb(6, 6, 6,0.8)) !important;
+    border-radius: 15px;
+    padding: 2%
+}
+
+.icono {
+    font-size: 18px
+}
+
+.plan-cobro {
+    margin-left: 3.5% !important;
+    margin-right: 3.5% !important
+}
+
+.deshabilitado {
+    background-color: grey !important
+}
+
+.abc {
+    border-bottom: 1px solid aquamarine;
+    /*padding-bottom: 3px*/
+}
+
+.letra {
+    text-align: center !important;
+    color: aquamarine !important;
+    text-decoration: none !important;
+    transition: 0.3s;
+    padding-bottom: 5px;
+    background: none;
+    border: none
+}
+
+.letra:hover {
+    background-color: aquamarine !important;
+    color: rgb(6, 6, 6,0.8) !important
+}
+
+.filtro-estado {
+    color: aquamarine !important;
+    text-decoration: none !important;
+    padding: 10px;
+    transition: 0.3s;
+    margin-top: 5px !important;
+    margin-left: 5px !important;
+    border: solid aquamarine 3px !important;
+    border-radius: 7px;
+    background-color: transparent !important
+}
+
+.filtro-estado:hover {
+    background-color: aquamarine !important;
+    color: black !important;
+}
+
+/*@media screen and (max-width: 600px) {
+    .noticias {
+        color: aquamarine !important;
+        margin: 0px !important;
+        border-right: none;
+        padding: 10px !important;
+        border-bottom: solid aquamarine 1px !important;
+    }
+
+    .avisos {
+        margin: 0px;
+        padding: 10px !important;
+        border-right: solid rgb(255,255,255,0.4) 1px !important;
+    }
+
+    .documentos {
+        border-radius: 0px;
+        margin: 0px;
+        padding: 10px !important
+    }
+}*/

@@ -1,0 +1,174 @@
+﻿@model Infraestructure.Models.EstadoCuenta
+
+<div class="tabla">
+    <div class="container mb-5">
+        <h4 class="col">Informacion de Usuario</h4>
+        <div class="detalle2">
+            <div class="row">
+                <strong class="col">Nombre Completo :</strong>
+                <p class="col">
+                    @Html.DisplayFor(model => model.Residencia.Usuario.Nombre)  @Html.DisplayFor(model => model.Residencia.Usuario.Apellido1)  @Html.DisplayFor(model => model.Residencia.Usuario.Apellido2)
+                </p>
+            </div>
+            <hr />
+            <div class="row">
+                <strong class="col">@Html.DisplayNameFor(model => model.Residencia.Usuario.Correo) :</strong><p class="col">@Html.DisplayFor(model => model.Residencia.Usuario.Correo)</p>
+            </div>
+        </div>
+        <br />
+        <br />
+        <h4 class="col">Informacion de Residencia</h4>
+        <div class="detalle2">
+            <div class="row">
+                <strong class="col">@Html.DisplayNameFor(model => model.ResidenciaID) :</strong><p class="col">@Html.DisplayFor(model => model.ResidenciaID)</p>
+            </div>
+            <hr />
+            <div class="row">
+                <strong class="col">@Html.DisplayNameFor(model => model.Residencia.FechaInicio) :</strong><p class="col">@Html.DisplayFor(model => model.Residencia.FechaInicio)</p>
+            </div>
+            <hr />
+            <div class="row">
+                <strong class="col">@Html.DisplayNameFor(model => model.Residencia.CantPersonas) :</strong><p class="col">@Html.DisplayFor(model => model.Residencia.CantPersonas)</p>
+            </div>
+            <hr />
+            <div class="row">
+                <strong class="col">@Html.DisplayNameFor(model => model.Residencia.CantidadCarros) :</strong><p class="col">@Html.DisplayFor(model => model.Residencia.CantidadCarros)</p>
+            </div>
+            <hr />
+            <div class="row">
+                <strong class="col">@Html.DisplayNameFor(model => model.Residencia.Estado) :</strong><p class="col">@Html.DisplayFor(model => model.Residencia.Estado)</p>
+            </div>
+        </div>
+        <br />
+        <br />
+        <h4 class="col">Historial Pagados</h4>
+        <br />
+        <div class="container">
+            @if (((IEnumerable<Infraestructure.Models.EstadoCuenta>)ViewBag.pagados).Count() <= 0)
+            {
+                <div class="row">
+                    <div class="col">
+                        <div><p>No existen pagos en este historial</p></div>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="row">
+                    <strong class="col">Mes</strong>
+                    <strong class="col">Estado</strong>
+                    <strong class="col">Ver detalle</strong>
+                    <strong class="col">Modificar</strong>
+                </div>
+                foreach (var item in (IEnumerable<Infraestructure.Models.EstadoCuenta>)ViewBag.pagados)
+                {
+                    <div class="row">
+                        <div class="col">
+                            <div>@Html.DisplayFor(modelItem => item.Mes)</div>
+                        </div>
+                        <div class="col">
+                            <div>Pagado</div>
+                        </div>
+                        <div class="col"><a href="@Url.Action("Pagado", "EstadoCuenta", new { id = item.ID })" class="details">Ir</a></div>
+                        <div class="col">
+                            <a href="@Url.Action("Edit", "EstadoCuenta", new { id = item.ID})" class="details">Editar</a>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+        <br />
+        <br />
+        <h4 class="col">Historial Pendientes</h4>
+        <br />
+        <div class="container">
+            @if (((IEnumerable<Infraestructure.Models.EstadoCuenta>)ViewBag.pendientes).Count() <= 0)
+            {
+                <div class="row">
+                    <div class="col">
+                        <div><p>No existen pagos en este historial</p></div>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="row">
+                    <strong class="col">Mes</strong>
+                    <strong class="col">Estado</strong>
+                    <strong class="col">Ver detalle</strong>
+                    <strong class="col">Modificar</strong>
+                </div>
+                foreach (var item in (IEnumerable<Infraestructure.Models.EstadoCuenta>)ViewBag.pendientes)
+                {
+                    <div class="row">
+                        <div class="col">
+                            <div>@Html.DisplayFor(modelItem => item.Mes)</div>
+                        </div>
+                        <div class="col">
+                            <div>Pendiente</div>
+                        </div>
+                        <div class="col"><a href="@Url.Action("Pendiente", "EstadoCuenta", new { id = item.ID })" class="details">Detalle</a></div>
+                        <div class="col">
+                            <a href="@Url.Action("Edit", "EstadoCuenta", new { id = item.ID})" class="details">Editar</a>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+        <br />
+        <br />
+        <a href="@Url.Action("Index", "EstadoCuenta")" class="regresar">Regresar</a>
+    </div>
+</div>
+
+
+@*<div>
+    <h4>EstadoCuenta</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Monto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Monto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Estado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Estado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Mes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Mes)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PlanCobro.Descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PlanCobro.Descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Residencia.Estado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Residencia.Estado)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>*@

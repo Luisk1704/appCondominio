@@ -1,0 +1,133 @@
+﻿@model IEnumerable<Infraestructure.Models.EstadoCuenta>
+
+
+<div class="tabla">
+    <h2>Reporte de Deudas</h2>
+    <br />
+    <p>
+        <a href="@Url.Action("CreatePdfDeudas", "EstadoCuenta")" class="regresar">PDF deudas</a>
+    </p>
+    <br />
+    <br />
+    <div class="row">
+        <div class="col-lg-8 row">
+            <button name="boton" onclick="getByMes(0)" class="filtro-estado col-lg-2">Todos</button>
+            <select name="boton" class="filtro-estado col-lg-3">
+                <option>Filtrar Mes</option>
+                @foreach (var item in (SelectList)ViewBag.Meses)
+                {
+                    <option onclick="getByMes('@item.Value')">@item.Text</option>
+                }
+            </select>
+            <select name="boton" class="filtro-estado col-lg-3">
+                <option>Filtrar Residencia</option>
+                @foreach (var item in new ApplicationCore.Services.ServiceEstadoCuenta().GetPendientes())
+                {
+                    <option onclick="getByResid('@item.ResidenciaID')">@item.ResidenciaID</option>
+                }
+            </select>
+        </div>
+    </div>
+    <br />
+    <br />
+    <div id="resultado">
+        <table class="table text-light">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Residencia.Usuario)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Mes)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PlanCobro)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Monto)
+                </th>
+                @*<th></th>*@
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Residencia.Usuario.Nombre) @Html.DisplayFor(modelItem => item.Residencia.Usuario.Apellido1)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Mes)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PlanCobro.Descripcion)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Monto)
+                    </td>
+                    @*<td>
+                            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+                            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+                            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+                        </td>*@
+                </tr>
+            }
+            <tr>
+                <td class="border-0">
+                </td>
+                <td class="border-0">
+                </td>
+                <td style="color: aquamarine">
+                    <strong>Total Deudas:</strong>
+                </td>
+                <td>
+                    @{
+                        decimal suma = 0;
+                        foreach (var item in new ApplicationCore.Services.ServiceEstadoCuenta().GetPendientes())
+                        {
+                            suma += item.Monto;
+                        }
+                    }
+                    <strong>₡@suma</strong>
+                </td>
+                @*<td>
+                        @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+                        @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+                        @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+                    </td>*@
+            </tr>
+        </table>
+    </div>
+</div>
+
+@section Scripts{
+    <script type="text/javascript">
+        function getByResid(parametro) {
+            $.ajax({
+                method: 'GET',
+                url: '/EstadoCuenta/FiltroPendResid',
+                data: { 'id': parametro },
+                success: function (response) {
+                    console.log(response)
+                    $('#resultado').html('');
+                    $('#resultado').html(response);
+                }, error: function (xhr, status, error) {
+                    console.log('Error' + error + ',No Error' + xhr.status);
+                }
+            })
+        }
+
+        function getByMes(parametro) {
+            $.ajax({
+                method: 'GET',
+                url: '/EstadoCuenta/FiltroPendMes',
+                data: { 'id': parametro },
+                success: function (response) {
+                    console.log(response)
+                    $('#resultado').html('');
+                    $('#resultado').html(response);
+                }, error: function (xhr, status, error) {
+                    console.log('Error' + error + ',No Error' + xhr.status);
+                }
+            })
+        }    
+    </script>
+}

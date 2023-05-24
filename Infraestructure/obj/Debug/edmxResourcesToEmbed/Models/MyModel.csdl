@@ -1,0 +1,273 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ProyectoCondominioModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="AreaComun">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="HorarioInicio" Type="Time" Nullable="false" Precision="7" />
+    <Property Name="HorarioCierre" Type="Time" Nullable="false" Precision="7" />
+    <Property Name="Disponibilidad" Type="Int32" Nullable="false" />
+    <Property Name="Estado" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Reservacion" Relationship="Self.Fk_Area" FromRole="AreaComun" ToRole="Reservacion" />
+  </EntityType>
+  <EntityType Name="EstadoCuenta">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ResidenciaID" Type="Int32" Nullable="false" />
+    <Property Name="PlanCobroID" Type="Int32" Nullable="false" />
+    <Property Name="Monto" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="Estado" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Mes" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="PlanCobro" Relationship="Self.Fk_Plan" FromRole="EstadoCuenta" ToRole="PlanCobro" />
+    <NavigationProperty Name="Residencia" Relationship="Self.Fk_Resid" FromRole="EstadoCuenta" ToRole="Residencia" />
+  </EntityType>
+  <EntityType Name="Incidencia">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UsuarioID" Type="Int32" Nullable="false" />
+    <Property Name="Titulo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Informacion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Estado" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Usuario" Relationship="Self.Fk_U" FromRole="Incidencia" ToRole="Usuario" />
+  </EntityType>
+  <EntityType Name="Informacion">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UsuarioID" Type="Int32" Nullable="false" />
+    <Property Name="Titulo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Informacion1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Estado" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Usuario" Relationship="Self.Fk_Us" FromRole="Informacion" ToRole="Usuario" />
+  </EntityType>
+  <EntityType Name="PlanCobro">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="TotalMes" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="Estado" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="EstadoCuenta" Relationship="Self.Fk_Plan" FromRole="PlanCobro" ToRole="EstadoCuenta" />
+    <NavigationProperty Name="RubroCobro" Relationship="Self.PlanRubro" FromRole="PlanCobro" ToRole="RubroCobro" />
+  </EntityType>
+  <EntityType Name="Reservacion">
+    <Key>
+      <PropertyRef Name="AreaComunID" />
+      <PropertyRef Name="UsuarioID" />
+    </Key>
+    <Property Name="AreaComunID" Type="Int32" Nullable="false" />
+    <Property Name="UsuarioID" Type="Int32" Nullable="false" />
+    <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Estado" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="AreaComun" Relationship="Self.Fk_Area" FromRole="Reservacion" ToRole="AreaComun" />
+    <NavigationProperty Name="Usuario" Relationship="Self.Fk_Usuario" FromRole="Reservacion" ToRole="Usuario" />
+  </EntityType>
+  <EntityType Name="Residencia">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UsuarioID" Type="Int32" Nullable="false" />
+    <Property Name="CantPersonas" Type="Int32" Nullable="false" />
+    <Property Name="FechaInicio" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Estado" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CantidadCarros" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="EstadoCuenta" Relationship="Self.Fk_Resid" FromRole="Residencia" ToRole="EstadoCuenta" />
+    <NavigationProperty Name="Usuario" Relationship="Self.Fk_User" FromRole="Residencia" ToRole="Usuario" />
+  </EntityType>
+  <EntityType Name="RubroCobro">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Costo" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="Estado" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="PlanCobro" Relationship="Self.PlanRubro" FromRole="RubroCobro" ToRole="PlanCobro" />
+  </EntityType>
+  <EntityType Name="TipoUsuario">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Usuario" Relationship="Self.FK_Tipo" FromRole="TipoUsuario" ToRole="Usuario" />
+  </EntityType>
+  <EntityType Name="Usuario">
+    <Key>
+      <PropertyRef Name="UsuarioID" />
+    </Key>
+    <Property Name="UsuarioID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TipoUsuarioID" Type="Int32" Nullable="false" />
+    <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Apellido1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Apellido2" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Correo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Contrasenna" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Estado" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Incidencia" Relationship="Self.Fk_U" FromRole="Usuario" ToRole="Incidencia" />
+    <NavigationProperty Name="Informacion" Relationship="Self.Fk_Us" FromRole="Usuario" ToRole="Informacion" />
+    <NavigationProperty Name="Reservacion" Relationship="Self.Fk_Usuario" FromRole="Usuario" ToRole="Reservacion" />
+    <NavigationProperty Name="Residencia" Relationship="Self.Fk_User" FromRole="Usuario" ToRole="Residencia" />
+    <NavigationProperty Name="TipoUsuario" Relationship="Self.FK_Tipo" FromRole="Usuario" ToRole="TipoUsuario" />
+  </EntityType>
+  <Association Name="Fk_Area">
+    <End Role="AreaComun" Type="Self.AreaComun" Multiplicity="1" />
+    <End Role="Reservacion" Type="Self.Reservacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AreaComun">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Reservacion">
+        <PropertyRef Name="AreaComunID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Fk_Plan">
+    <End Role="PlanCobro" Type="Self.PlanCobro" Multiplicity="1" />
+    <End Role="EstadoCuenta" Type="Self.EstadoCuenta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PlanCobro">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="EstadoCuenta">
+        <PropertyRef Name="PlanCobroID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Fk_Resid">
+    <End Role="Residencia" Type="Self.Residencia" Multiplicity="1" />
+    <End Role="EstadoCuenta" Type="Self.EstadoCuenta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Residencia">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="EstadoCuenta">
+        <PropertyRef Name="ResidenciaID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Fk_U">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+    <End Role="Incidencia" Type="Self.Incidencia" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="UsuarioID" />
+      </Principal>
+      <Dependent Role="Incidencia">
+        <PropertyRef Name="UsuarioID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Fk_Us">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+    <End Role="Informacion" Type="Self.Informacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="UsuarioID" />
+      </Principal>
+      <Dependent Role="Informacion">
+        <PropertyRef Name="UsuarioID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Fk_Usuario">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+    <End Role="Reservacion" Type="Self.Reservacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="UsuarioID" />
+      </Principal>
+      <Dependent Role="Reservacion">
+        <PropertyRef Name="UsuarioID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Fk_User">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+    <End Role="Residencia" Type="Self.Residencia" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="UsuarioID" />
+      </Principal>
+      <Dependent Role="Residencia">
+        <PropertyRef Name="UsuarioID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tipo">
+    <End Role="TipoUsuario" Type="Self.TipoUsuario" Multiplicity="1" />
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoUsuario">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Usuario">
+        <PropertyRef Name="TipoUsuarioID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PlanRubro">
+    <End Role="PlanCobro" Type="Self.PlanCobro" Multiplicity="*" />
+    <End Role="RubroCobro" Type="Self.RubroCobro" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="ProyectoCondominioEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="AreaComun" EntityType="Self.AreaComun" />
+    <EntitySet Name="EstadoCuenta" EntityType="Self.EstadoCuenta" />
+    <EntitySet Name="Incidencia" EntityType="Self.Incidencia" />
+    <EntitySet Name="Informacion" EntityType="Self.Informacion" />
+    <EntitySet Name="PlanCobro" EntityType="Self.PlanCobro" />
+    <EntitySet Name="Reservacion" EntityType="Self.Reservacion" />
+    <EntitySet Name="Residencia" EntityType="Self.Residencia" />
+    <EntitySet Name="RubroCobro" EntityType="Self.RubroCobro" />
+    <EntitySet Name="TipoUsuario" EntityType="Self.TipoUsuario" />
+    <EntitySet Name="Usuario" EntityType="Self.Usuario" />
+    <AssociationSet Name="Fk_Area" Association="Self.Fk_Area">
+      <End Role="AreaComun" EntitySet="AreaComun" />
+      <End Role="Reservacion" EntitySet="Reservacion" />
+    </AssociationSet>
+    <AssociationSet Name="Fk_Plan" Association="Self.Fk_Plan">
+      <End Role="PlanCobro" EntitySet="PlanCobro" />
+      <End Role="EstadoCuenta" EntitySet="EstadoCuenta" />
+    </AssociationSet>
+    <AssociationSet Name="Fk_Resid" Association="Self.Fk_Resid">
+      <End Role="Residencia" EntitySet="Residencia" />
+      <End Role="EstadoCuenta" EntitySet="EstadoCuenta" />
+    </AssociationSet>
+    <AssociationSet Name="Fk_U" Association="Self.Fk_U">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="Incidencia" EntitySet="Incidencia" />
+    </AssociationSet>
+    <AssociationSet Name="Fk_Us" Association="Self.Fk_Us">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="Informacion" EntitySet="Informacion" />
+    </AssociationSet>
+    <AssociationSet Name="Fk_Usuario" Association="Self.Fk_Usuario">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="Reservacion" EntitySet="Reservacion" />
+    </AssociationSet>
+    <AssociationSet Name="Fk_User" Association="Self.Fk_User">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="Residencia" EntitySet="Residencia" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tipo" Association="Self.FK_Tipo">
+      <End Role="TipoUsuario" EntitySet="TipoUsuario" />
+      <End Role="Usuario" EntitySet="Usuario" />
+    </AssociationSet>
+    <AssociationSet Name="PlanRubro" Association="Self.PlanRubro">
+      <End Role="PlanCobro" EntitySet="PlanCobro" />
+      <End Role="RubroCobro" EntitySet="RubroCobro" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,17 @@
+﻿@{
+    ViewBag.Title = "UnAuthorized";
+    Layout = "~/Views/Shared/LayoutUser.cshtml";
+}
+<br />
+<br />
+<div class="tabla">
+    <h2>Acceso Denegado</h2>
+    <hr />
+    <input type="button" value="Regresar" class="regresar" onclick="goBack()" />
+
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+</div>

@@ -1,0 +1,108 @@
+﻿@model IEnumerable<Infraestructure.Models.EstadoCuenta>
+
+<div class="tabla">
+    <p>
+        <a href="@Url.Action("Create", "EstadoCuenta")" class="regresar">Crear <strong class=".icono">+</strong></a>
+    </p>
+    <br />
+    <br />
+    <div class="row">
+        <div class="col-lg-8 row">
+            <button name="boton" onclick="getByMes(0)" class="filtro-estado col-lg-2">Todos</button>
+            <select name="boton" class="filtro-estado col-lg-2">
+                <option>Filtrar Mes</option>
+                @foreach (var item in (SelectList)ViewBag.Meses)
+                {
+                    <option onclick="getByMes('@item.Value')">@item.Text</option>
+                }
+            </select>
+            <select name="boton" class="filtro-estado col-lg-3">
+                <option>Filtrar Residencia</option>
+                @foreach (var item in new ApplicationCore.Services.ServiceEstadoCuenta().GetEstadoCuentas())
+                {
+                    <option onclick="getByResid('@item.ResidenciaID')">@item.ResidenciaID</option>
+                }
+            </select>
+            <button name="boton" onclick="getPendientes()" class="filtro-estado col-lg-2">Pendientes</button>
+        </div>
+    </div>
+    <br />
+    <br />
+    <div id="resultado">
+        <table class="table text-light">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Residencia.ID)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Residencia.Usuario)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Residencia.ID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Residencia.Usuario.Nombre)  @Html.DisplayFor(modelItem => item.Residencia.Usuario.Apellido1)
+                    </td>
+                    <td>
+                        <a href="@Url.Action("Edit", "EstadoCuenta", new { id = item.ID})" class="details">Editar</a>
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+</div>
+
+@section Scripts{
+    <script type="text/javascript">
+        function getByResid(parametro) {
+            $.ajax({
+                method: 'GET',
+                url: '/EstadoCuenta/FiltroResid',
+                data: {'id': parametro },
+                success: function (response) {
+                    console.log(response)
+                    $('#resultado').html('');
+                    $('#resultado').html(response);
+                }, error: function (xhr, status, error) {
+                    console.log('Error' + error + ',No Error' + xhr.status);
+                }
+            })
+        }
+
+        function getByMes(parametro) {
+            $.ajax({
+                method: 'GET',
+                url: '/EstadoCuenta/FiltroFecha',
+                data: { 'id': parametro },
+                success: function (response) {
+                    console.log(response)
+                    $('#resultado').html('');
+                    $('#resultado').html(response);
+                }, error: function (xhr, status, error) {
+                    console.log('Error' + error + ',No Error' + xhr.status);
+                }
+            })
+        }
+
+        function getPendientes() {
+            $.ajax({
+                method: 'GET',
+                url: '/EstadoCuenta/FiltroPendientes',
+                success: function (response) {
+                    console.log(response)
+                    $('#resultado').html('');
+                    $('#resultado').html(response);
+                }, error: function (xhr, status, error) {
+                    console.log('Error' + error + ',No Error' + xhr.status);
+                }
+            })
+        }
+    </script>
+}

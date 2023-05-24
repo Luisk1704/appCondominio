@@ -1,0 +1,59 @@
+﻿@model Infraestructure.Models.PlanCobro
+
+<div class="tabla">
+    @using (Html.BeginForm("Save","PlanCobro",FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h4>PlanCobro</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.ID)
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Descripcion, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-12">
+                    @Html.EditorFor(model => model.Descripcion, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Descripcion, "", new { @class = "text-danger" })
+                </div>
+            </div>            
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Estado, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-12">
+                    @Html.DropDownListFor(model => model.Estado,
+                    (SelectList)ViewBag.estados, "Seleccione el estado",
+                    htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Estado, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.RubroCobro, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-12">
+                    @Html.DropDownList("listaRubros",
+                   (MultiSelectList)ViewBag.Rubros,
+                   htmlAttributes: new { @class = "form-control", multiple = "multiple" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-12">
+                    <input type="submit" value="Modificar" class="regresar" />
+                </div>
+            </div>
+        </div>
+    }
+    <div>
+        <br />
+        <br />
+        <div>
+            <a href="@Url.Action("Details", "PlanCobro", new { id = Model.ID})" class="regresar">Regresar</a>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

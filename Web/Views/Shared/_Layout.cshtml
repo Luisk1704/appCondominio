@@ -1,0 +1,73 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Mi aplicación ASP.NET</title>
+    <link href="~/Content/style.css" rel="stylesheet" />
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    @Html.Partial("_menu")
+    <br />
+    <br />
+    <main class="principal-pag container">
+        <div class="body-content">
+            @RenderBody()
+        </div>
+        @*<footer class="fixed-bottom">
+                <p>&copy; @DateTime.Now.Year - Mi aplicación ASP.NET</p>
+            </footer>*@
+    </main>
+
+    @Scripts.Render("~/bundles/jquery")
+    @*@Scripts.Render("~/bundles/bootstrap")*@
+    <script src="~/Scripts/bootstrap.bundle.min.js"></script>
+    @RenderSection("scripts", required: false)
+    @Scripts.Render("~/bundles/sweetalert")
+
+    @if (ViewBag.mensaje != null)
+    {
+        <script>
+            @Html.Raw(ViewBag.mensaje)
+        </script>
+    }
+
+    @if (ViewBag.fail != null)
+    {
+        <script>
+            @Html.Raw(ViewBag.fail)
+        </script>
+    }
+
+    @if (ViewBag.error != null)
+    {
+        <script>
+            @Html.Raw(ViewBag.error)
+        </script>
+    }
+
+    @if (ViewBag.succes != null)
+    {
+        <script>
+            @Html.Raw(ViewBag.succes)
+        </script>
+    }
+
+    @if (ViewBag.incid != null)
+    {
+        <script>
+            @Html.Raw(ViewBag.incid)
+        </script>
+    }
+
+    @if (ViewBag.reserv != null)
+    {
+        <script>
+            @Html.Raw(ViewBag.reserv)
+        </script>
+    }
+</body>
+</html>

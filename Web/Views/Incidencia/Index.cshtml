@@ -1,0 +1,53 @@
+﻿@model IEnumerable<Infraestructure.Models.Incidencia>
+
+<div class="tabla">
+    @*<p>
+        <a href="@Url.Action("Create", "Incidencia")" class="regresar">Crear <strong class=".icono">+</strong></a>
+    </p>
+    <br />
+    <br />*@
+    <table class="table text-light">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Titulo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Informacion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Fecha)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Usuario)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Estado)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Titulo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Informacion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Fecha)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Usuario.Nombre) @Html.DisplayFor(modelItem => item.Usuario.Apellido1)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Estado) 
+                </td>
+                <td>
+                    <a href="@Url.Action("Edit", "Incidencia", new { id = item.ID})" class="details">Editar</a>
+                </td>
+            </tr>
+        }
+    </table>
+</div>

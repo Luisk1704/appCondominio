@@ -1,0 +1,66 @@
+﻿@model Infraestructure.Models.EstadoCuenta
+
+<div class="tabla">
+    @using (Html.BeginForm("Save", "EstadoCuenta", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal row">
+            <h4>EstadoCuenta</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group container col-lg-6">
+                @Html.LabelFor(model => model.ResidenciaID, htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-12">
+                    @Html.DropDownListFor(model => model.ResidenciaID,
+                    (SelectList)ViewBag.usuarios, "Seleccione una Residencia",
+                    htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.ResidenciaID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group container col-lg-6">
+                @Html.LabelFor(model => model.PlanCobroID, htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-12">
+                    @Html.DropDownListFor(model => model.PlanCobroID,
+                    (SelectList)ViewBag.planes, "Seleccione un Plan",
+                    htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.PlanCobroID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group container col-lg-6">
+                @Html.LabelFor(model => model.Estado, htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-12">
+                    @Html.DropDownListFor(model => model.Estado,
+                    (SelectList)ViewBag.estados, "Seleccione un Estado",
+                    htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Estado, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group container col-lg-6">
+                @Html.LabelFor(model => model.Mes, htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-12">
+                    @Html.EditorFor(model => model.Mes, new { htmlAttributes = new { @class = "form-control", type = "date" } })
+                    @Html.ValidationMessageFor(model => model.Mes, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Crear" class="regresar" />
+                </div>
+            </div>
+        </div>
+    }
+    <br />
+    <br />
+    <div>
+        @Html.ActionLink("Regresar", "Index", null, new { @class = "regresar" })
+    </div>
+</div>    
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }

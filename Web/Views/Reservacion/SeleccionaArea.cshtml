@@ -1,0 +1,49 @@
+﻿@model Infraestructure.Models.Reservacion
+
+<div class="tabla">
+    @using (Html.BeginForm("SeleccionaAreaComun", "Reservacion", FormMethod.Post, new { enctype = "multipart / form - data" }))
+    {
+        @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @*<h4>Reservacion</h4>*@
+        <hr />
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.AreaComunID, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-12">
+                @Html.DropDownListFor(model => model.AreaComunID,
+                (SelectList)ViewBag.areas, "Seleccione Area",
+                htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.AreaComunID, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.AreaComunID, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-12">
+                @Html.DropDownList("area",
+               (SelectList)ViewBag.areas, "Seleccione Area",
+               htmlAttributes: new { @class = "form-control" })
+                @if (ViewBag.noSelected != null)
+                {
+                    <p class="text-danger">@((string)ViewBag.noSelected)</p>
+                }
+            </div>            
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Siguiente" class="regresar" />
+            </div>
+        </div>
+    </div>
+    }
+</div>
+
+    @*<div>
+            @Html.ActionLink("Regresar", "Index")
+        </div>*@
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }

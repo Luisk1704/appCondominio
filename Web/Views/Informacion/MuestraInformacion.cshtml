@@ -1,0 +1,85 @@
+﻿@model IEnumerable<Infraestructure.Models.Informacion>
+
+<div class="tabla container">
+    <div class="row">
+        <div class="col-lg-4 container">
+            <div class="informacion">
+                <h4><strong style="border-bottom:solid 1px aquamarine">Noticias</strong></h4>
+                @if (((IEnumerable<Infraestructure.Models.Informacion>)@ViewBag.Noticias).Count() == 0)
+                {
+                    <br />
+                    <br />
+                    <br />
+                    <p>No hay noticias recientes</p>
+                }
+                @foreach (var item in (IEnumerable<Infraestructure.Models.Informacion>)@ViewBag.Noticias)
+                {
+                    <br />
+                    <h7><strong>Fecha:</strong>  @Html.DisplayFor(modelItem => item.Fecha)</h7>
+                    <br />
+                    <br />
+                    Infraestructure.Models.Informacion ItemMayor = new Infraestructure.Models.Informacion();
+                    if (ItemMayor.Fecha.Day < item.Fecha.Day)
+                    {
+                        ItemMayor = item;
+                    }
+                    @ItemMayor.Informacion1;
+                    <hr />
+                }
+            </div>            
+        </div>
+        <div class="col-lg-4 container">
+            <div class="informacion">
+                <h4><strong style="border-bottom:solid 1px aquamarine">Avisos</strong></h4>
+                @if (((IEnumerable<Infraestructure.Models.Informacion>)@ViewBag.Avisos).Count() == 0)
+                {
+                    <br />
+                    <br />
+                    <br />
+                    <p>No hay avisos recientes</p>
+                }
+                @foreach (var item in (IEnumerable<Infraestructure.Models.Informacion>)@ViewBag.Avisos)
+                {
+                    <br />
+                    <h7><strong>Fecha:</strong>  @Html.DisplayFor(modelItem => item.Fecha)</h7>
+                    <br />
+                    <br />
+                    @Html.DisplayFor(modelItem => item.Informacion1)
+                    <hr />
+                }
+            </div>            
+        </div>
+        <div class="col-lg-4 container">
+            <div class="informacion">
+                <h4><strong style="border-bottom:solid 1px aquamarine">Archivos Documentales</strong></h4>
+                @if (((IEnumerable<Infraestructure.Models.Informacion>)@ViewBag.Documentos).Count() == 0)
+                {
+                    <br />
+                    <br />
+                    <br />
+                    <p>No hay archivos documentales</p>
+                }
+                @foreach (var item in (IEnumerable<Infraestructure.Models.Informacion>)@ViewBag.Documentos)
+                {
+                    <br />
+                    <h7><strong>Fecha:</strong>@Html.DisplayFor(modelItem => item.Fecha)</h7>
+                    <br />
+                    <br />
+                    @Html.DisplayFor(modelItem => item.Informacion1)
+                    <hr />
+                }
+            </div>            
+        </div>
+        @if (TempData["mensaje"] != null)
+        {
+            <script>
+                @Html.Raw(TempData["mensaje"])
+            </script>
+        }
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/sweetalert")
+}

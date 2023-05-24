@@ -1,0 +1,98 @@
+﻿<nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <img src="~/Img/Logotipo.png" height="50px" alt="Alternate Text" />
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarColor03">
+            <ul class="navbar-nav me-auto">
+                @*<li class="nav-item"> @Html.ActionLink("Residencias", "Index", "Residencia", null, new { @class = "nav-link enlace-nav" })</li>*@
+                @if (Session["Usuario"] != null)
+                {
+                    if (((Infraestructure.Models.Usuario)Session["Usuario"]).TipoUsuarioID == 1)
+                    {
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle enlace-nav" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Mantenimientos</a>
+                            <div class="dropdown-menu">
+                                @Html.ActionLink("Residencias", "Index", "Residencia", null, new { @class = "nav-link enlace-nav" })
+                                <div class="dropdown-divider"></div>
+                                @Html.ActionLink("Planes Cobro", "Index", "PlanCobro", null, new { @class = "nav-link enlace-nav" })
+                                <div class="dropdown-divider"></div>
+                                @Html.ActionLink("Estados Cuenta", "Index", "EstadoCuenta", null, new { @class = "nav-link enlace-nav" })
+                                <div class="dropdown-divider"></div>
+                                @Html.ActionLink("Informacion", "Index", "Informacion", null, new { @class = "nav-link enlace-nav" })
+                                <div class="dropdown-divider"></div>
+                                @Html.ActionLink("Incidencias", "Index", "Incidencia", null, new { @class = "nav-link enlace-nav" })
+                                <div class="dropdown-divider"></div>
+                                @Html.ActionLink("Rubros de Cobro", "Index", "RubroCobro", null, new { @class = "nav-link enlace-nav" })
+                                <div class="dropdown-divider"></div>
+                                @Html.ActionLink("Reservaciones", "Index", "Reservacion", null, new { @class = "nav-link enlace-nav" })
+                                <div class="dropdown-divider"></div>
+                                @Html.ActionLink("Usuarios", "ListaUsuarios", "Login", null, new { @class = "nav-link enlace-nav" })
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            @Html.ActionLink("Inicio", "MuestraInformacion", "Informacion", null, new { @class = "nav-link enlace-nav" })
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle enlace-nav" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Reportes</a>
+                            <div class="dropdown-menu">
+                                @Html.ActionLink("Gráfico Ingresos Mensuales", "graficoEstados", "EstadoCuenta", null, new { @class = "nav-link enlace-nav" })
+                                <div class="dropdown-divider"></div>
+                                @Html.ActionLink("Reporte Deudas", "ReporteEstados", "EstadoCuenta", null, new { @class = "nav-link enlace-nav" })
+                            </div>
+                        </li>                        
+                    }
+                    else
+                    {
+                        <li class="nav-item">
+                            @Html.ActionLink("Inicio", "MuestraInformacion", "Informacion", null, new { @class = "nav-link enlace-nav" })
+                        </li>
+                        <li class="nav-item">
+                            @Html.ActionLink("Reservar", "SeleccionaArea", "Reservacion", null, new { @class = "nav-link enlace-nav" })
+                        </li>
+                        <li class="nav-item">
+                            @Html.ActionLink("Reportar Incidencias", "Create", "Incidencia", null, new { @class = "nav-link enlace-nav" })
+                        </li>
+                        <li class="nav-item">
+                            @Html.ActionLink("Mis Reservaciones", "MuestraHistorial", "Reservacion", null, new { @class = "nav-link enlace-nav" })
+                        </li>
+                        <li class="nav-item">
+                            <a href="@Url.Action("MiEstado", "EstadoCuenta", new { id = ((Infraestructure.Models.Usuario)Session["Usuario"]).UsuarioID})" class="nav-link enlace-nav">Estado Cuenta</a>
+                        </li>
+
+                    }
+                    <li class="nav-item dropdown">
+                        @{
+                            string email = "";
+                            if (Session["Usuario"] != null)
+                            {
+                                Infraestructure.Models.Usuario usuario = new Infraestructure.Models.Usuario();
+                                usuario = (Infraestructure.Models.Usuario)Session["Usuario"];
+                                email = usuario.Correo;
+                            }
+                        }
+                        <a class="nav-link dropdown-toggle enlace-nav" data-bs-toggle="dropdown"
+                           href="#" role="button" aria-haspopup="true" aria-expanded="false">@email</a>
+                        <div class="dropdown-menu">
+                            @Html.ActionLink("Cerrar Session", "Index", "Login",
+                            null, new { @class = "nav-link enlace-nav" })
+                        </div>
+                    </li>
+                }
+
+                @*<li class="nav-item">
+            @Html.ActionLink("Residencias", "Index", "Residencia", null, new { @class = "nav-link enlace-nav" })
+        </li>
+        <li class="nav-item">
+            @Html.ActionLink("Estados de Cuenta", "Index", "EstadoCuenta", null, new { @class = "nav-link enlace-nav" })
+        </li>*@
+            </ul>
+            @*<form class="d-flex">
+                <input class="form-control me-sm-2" type="search" placeholder="Search">
+                <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+            </form>*@
+        </div>
+    </div>
+</nav>
+

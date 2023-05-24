@@ -1,0 +1,99 @@
+﻿@model Infraestructure.Models.PlanCobro
+
+@{
+    ViewBag.Title = "Details";
+}
+<div class="tabla">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-4 detalle">
+            </div>
+            <div class="col-lg-8 detalle2">
+                <div class="fila">
+                    <h3><strong>@Html.DisplayFor(model => model.Descripcion)</strong></h3>
+                </div>
+                <hr />
+                <div class="fila">
+                    <strong>@Html.DisplayNameFor(model => model.TotalMes) :</strong><p>@Html.DisplayFor(model => model.TotalMes)</p>
+                </div>
+                <hr />
+                <div class="fila">
+                    <strong>Rubros de Cobro</strong>
+                    <br />
+                    <br />
+                    <ul>
+                        @foreach (var r in Model.RubroCobro)
+                        {
+                            <li>
+                                <div class="row">
+                                    <h6 class="col"><strong>@r.Nombre :</strong></h6>
+                                    <p class="col">@r.Descripcion</p>
+                                    <h6 class="col"><strong>Costo:</strong></h6>
+                                    <p class="col">@r.Costo</p>
+                                </div>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+    <br />
+    <div class="row"></div>
+    <div class="row col-lg-2">
+        <div class="col-lg-6">@Html.ActionLink("Regresar", "Index", null, new { @class = "regresar" })</div>
+        <div class="col-lg-6"><a href="@Url.Action("Edit", "PlanCobro", new { id = Model.ID})" class="regresar">Editar</a></div>
+    </div>    
+</div>
+
+
+@*<div>
+    <div class="container">
+        <h4 class="col">Informacion de Usuario</h4>
+        <div class="detalle2">
+            <div class="row">
+                <strong class="col">Nombre Completo :</strong>
+                <p class="col">
+                    @Html.DisplayFor(model => model.Residencia.Usuario.Nombre)  @Html.DisplayFor(model => model.Residencia.Usuario.Apellido1)  @Html.DisplayFor(model => model.Residencia.Usuario.Apellido2)
+                </p>
+            </div>
+            <hr />
+            <div class="row">
+                <strong class="col">@Html.DisplayNameFor(model => model.Residencia.Usuario.Correo) :</strong><p class="col">@Html.DisplayFor(model => model.Residencia.Usuario.Correo)</p>
+            </div>
+        </div>
+        <h4 class="col">Informacion de Residencia</h4>
+        <div class="detalle2">
+            <div class="row">
+                <strong class="col">@Html.DisplayNameFor(model => model.Residencia.ID) :</strong><p class="col">@Html.DisplayFor(model => model.Residencia.ID)</p>
+            </div>
+            <hr />
+            <div class="row">
+                <strong class="col">@Html.DisplayNameFor(model => model.Residencia.FechaInicio) :</strong><p class="col">@Html.DisplayFor(model => model.Residencia.FechaInicio)</p>
+            </div>
+            <hr />
+            <div class="row">
+                <strong class="col">@Html.DisplayNameFor(model => model.Residencia.CantPersonas) :</strong><p class="col">@Html.DisplayFor(model => model.Residencia.CantPersonas)</p>
+            </div>
+            <hr />
+            <div class="row">
+                <strong class="col">@Html.DisplayNameFor(model => model.Residencia.CantidadCarros) :</strong><p class="col">@Html.DisplayFor(model => model.Residencia.CantidadCarros)</p>
+            </div>
+            <hr />
+            <div class="row">
+                <strong class="col">@Html.DisplayNameFor(model => model.Residencia.FechaInicio) :</strong><p class="col">@Html.DisplayFor(model => model.Residencia.FechaInicio)</p>
+            </div>
+            <hr />
+            <div class="row">
+                <strong class="col">@Html.DisplayNameFor(model => model.Residencia.Estado) :</strong><p class="col">@Html.DisplayFor(model => model.Residencia.Estado)</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col"><a href="@Url.Action("Pagado", "EstadoCuenta", new { id = Model.ID })" class="regresar">Pagos Pendientes</a></div>
+            <div class="col"><a href="@Url.Action("Pendiente", "EstadoCuenta", new { id = Model.ID })" class="regresar">Pagos Pendientes</a></div>
+            <div class="col"><a href="@Url.Action("Index", "EstadoCuenta")" class="regresar">Regresar</a></div>
+        </div>
+    </div>
+</div>*@
+

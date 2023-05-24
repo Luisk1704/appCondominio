@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Infraestructure.Models.Reservacion>
+@{ 
+    Infraestructure.Models.Usuario usuario = (Infraestructure.Models.Usuario)Session["Usuario"];
+}
+
+<div class="tabla">
+    <br />
+    <h2>Lista de Reservaciones de <strong>@usuario.Nombre @usuario.Apellido1 @usuario.Apellido2</strong></h2>
+    <br />
+    <table class="table text-light">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Fecha)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Estado)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AreaComun)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Usuario)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Fecha)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Estado)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AreaComun.Descripcion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Usuario.Nombre) @Html.DisplayFor(modelItem => item.Usuario.Apellido1)
+                </td>                
+            </tr>
+        }
+    </table>
+</div>

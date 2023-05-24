@@ -1,0 +1,29 @@
+﻿@model IEnumerable<Infraestructure.Models.EstadoCuenta>
+
+<table class="table text-light">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Residencia.ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Residencia.Usuario)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Residencia.ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Residencia.Usuario.Nombre)  @Html.DisplayFor(modelItem => item.Residencia.Usuario.Apellido1)
+            </td>
+            <td>
+                <a href="@Url.Action("Edit", "EstadoCuenta", new { id = item.ID})" class="details">Editar</a>
+            </td>
+        </tr>
+    }
+
+</table>

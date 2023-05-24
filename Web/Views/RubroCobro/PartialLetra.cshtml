@@ -1,0 +1,37 @@
+﻿@model IEnumerable<Infraestructure.Models.RubroCobro>
+
+
+<table class="table text-light">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Costo)
+        </th>
+        <th>
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descripcion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Costo)
+            </td>
+            <td>
+                <a href="@Url.Action("Edit", "RubroCobro", new { id = item.ID})" class="details">Editar</a>
+            </td>
+        </tr>
+    }
+</table>
+

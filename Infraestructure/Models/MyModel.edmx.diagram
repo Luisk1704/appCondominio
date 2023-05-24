@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="1910b47231144c37941d519fc30c1251" Name="Diagram1">
+        <EntityTypeShape EntityType="ProyectoCondominioModel.AreaComun" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoCondominioModel.EstadoCuenta" Width="1.5" PointX="7.5" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoCondominioModel.Incidencia" Width="1.5" PointX="5.25" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoCondominioModel.Informacion" Width="1.5" PointX="5.25" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoCondominioModel.PlanCobro" Width="1.5" PointX="5.25" PointY="17.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoCondominioModel.Reservacion" Width="1.5" PointX="8.25" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoCondominioModel.Residencia" Width="1.5" PointX="5.25" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoCondominioModel.RubroCobro" Width="1.5" PointX="7.5" PointY="17.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoCondominioModel.TipoUsuario" Width="1.5" PointX="0.75" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoCondominioModel.Usuario" Width="1.5" PointX="3" PointY="7.125" IsExpanded="true" />
+        <AssociationConnector Association="ProyectoCondominioModel.Fk_Area" ManuallyRouted="false" />
+        <AssociationConnector Association="ProyectoCondominioModel.Fk_Plan" ManuallyRouted="false" />
+        <AssociationConnector Association="ProyectoCondominioModel.Fk_Resid" ManuallyRouted="false" />
+        <AssociationConnector Association="ProyectoCondominioModel.Fk_U" ManuallyRouted="false" />
+        <AssociationConnector Association="ProyectoCondominioModel.Fk_Us" ManuallyRouted="false" />
+        <AssociationConnector Association="ProyectoCondominioModel.Fk_Usuario" ManuallyRouted="false" />
+        <AssociationConnector Association="ProyectoCondominioModel.Fk_User" ManuallyRouted="false" />
+        <AssociationConnector Association="ProyectoCondominioModel.FK_Tipo" ManuallyRouted="false" />
+        <AssociationConnector Association="ProyectoCondominioModel.PlanRubro" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

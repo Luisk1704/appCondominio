@@ -1,0 +1,63 @@
+﻿@model Infraestructure.Models.Residencia
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="tabla">
+    <div class="container">
+        <h4 class="col">Detalles de Residencia</h4>
+        <div class="detalle2">
+            <div class="row">
+                <strong class="col">@Html.DisplayNameFor(model => model.ID) :</strong><p class="col">@Html.DisplayFor(model => model.ID)</p>
+            </div>
+            <hr />
+            <div class="row">
+                <strong class="col">@Html.DisplayNameFor(model => model.CantPersonas) :</strong><p class="col">@Html.DisplayFor(model => model.CantPersonas)</p>
+            </div>
+            <hr />
+            <div class="row">
+                <strong class="col">@Html.DisplayNameFor(model => model.FechaInicio) :</strong><p class="col">@Html.DisplayFor(model => model.FechaInicio)</p>
+            </div>
+            <hr />
+            <div class="row">
+                <strong class="col">@Html.DisplayNameFor(model => model.CantPersonas) :</strong><p class="col">@Html.DisplayFor(model => model.CantPersonas)</p>
+            </div>
+            <hr />
+            <div class="row">
+                <strong class="col">@Html.DisplayNameFor(model => model.Estado) :</strong><p class="col">@Html.DisplayFor(model => model.Estado)</p>
+            </div>
+            <hr />
+            <div class="row">
+                <strong class="col">@Html.DisplayNameFor(model => model.CantidadCarros) :</strong><p class="col">@Html.DisplayFor(model => model.CantidadCarros)</p>
+            </div>
+            <hr />
+            <br />
+            <div>
+                <h6><strong>Informacion del Dueño</strong></h6>
+                <br />
+                <h7>
+                    <ul>
+                        <li class="row">
+                            <div class="col row">
+                                <strong class="col">Nombre Completo:</strong>
+                                <p class="col">
+                                    @Html.DisplayFor(model => model.Usuario.Nombre) @Html.DisplayFor(model => model.Usuario.Apellido1) @Html.DisplayFor(model => model.Usuario.Apellido2)
+                                </p>
+                            </div>
+                            <div class="col row">
+                                <strong class="col">Correo :</strong><p class="col">@Html.DisplayFor(model => model.Usuario.Correo)</p>
+                            </div>
+                        </li>
+                    </ul>
+                </h7>
+            </div>
+        </div>
+    </div>
+    <br />
+    <br />
+    @Html.ActionLink("Regresar", "Index", null, new { @class = "regresar" })
+</div>
+
+
+

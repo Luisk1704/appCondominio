@@ -1,0 +1,41 @@
+﻿@model IEnumerable<Infraestructure.Models.Reservacion>
+
+
+<table class="table text-light">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Fecha)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Estado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AreaComun)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Usuario)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Fecha)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Estado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AreaComun.Descripcion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Usuario.Nombre) @Html.DisplayFor(modelItem => item.Usuario.Apellido1)
+            </td>
+            <td>
+                <a href="@Url.Action("Edit", "Reservacion", new { idUsuario = item.UsuarioID, idArea = item.AreaComunID})" class="details">Editar</a>
+            </td>
+        </tr>
+    }
+</table>

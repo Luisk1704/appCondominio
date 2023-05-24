@@ -1,0 +1,63 @@
+﻿@model IEnumerable<Infraestructure.Models.Usuario>
+
+<div class="tabla">
+    <h2>Lista de Usuarios</h2>
+    <br />
+    <p>
+        <a href="@Url.Action("Create", "Login")" class="regresar">Crear<strong class=".icono">+</strong></a>
+    </p>
+    <table class="table text-light">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Apellido1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Apellido2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Correo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Estado)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TipoUsuario)
+            </th>
+            <th></th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Apellido1)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Apellido2)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Correo)
+                </td>
+                <td>
+                    @if (item.Estado == 1)
+                    {
+                        <p>Habilitado</p>
+                    } else { 
+                        <p>Desabilitado</p>
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TipoUsuario.Descripcion)
+                </td>
+                <td>
+                    <a href="@Url.Action("Edit", "Login", new { id = item.UsuarioID})" class="details">Editar</a>
+                </td>
+            </tr>
+        }
+    </table>
+</div>

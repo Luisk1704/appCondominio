@@ -1,0 +1,35 @@
+﻿@model IEnumerable<Infraestructure.Models.PlanCobro>
+
+@{
+    ViewBag.Title = "Index";
+}
+<div class="tabla">
+    <h2>Planes de Cobro</h2>
+    <br />
+    <p>
+        <a href="@Url.Action("Create", "PlanCobro")" class="regresar">Crear <strong class=".icono">+</strong></a>
+    </p>
+    <br />
+    <br />
+    <br />
+    <div class="container">
+        <div class="plan-cobro row">
+            @foreach (var item in Model)
+            {
+                <div class="imagen col-lg-5">
+                    <a href="@Url.Action("Details", "PlanCobro", new { id = item.ID })" class="enlace">
+                        <div class="planes">
+                            @Html.DisplayFor(modelItem => item.Descripcion)
+                        </div>
+                        <div class="planes">
+                            <strong>@Html.DisplayFor(modelItem => item.TotalMes)</strong>
+                        </div>
+                    </a>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+
+

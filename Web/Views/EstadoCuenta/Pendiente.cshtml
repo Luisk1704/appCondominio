@@ -1,0 +1,56 @@
+﻿@model Infraestructure.Models.EstadoCuenta
+
+<div class="tabla">
+    <h2>Detalle de Pendiente</h2>
+    <div>
+        <hr />
+        <dl class="dl-horizontal">
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Monto)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Monto)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Estado)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Estado)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Mes)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Mes)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.PlanCobro.Descripcion)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.PlanCobro.Descripcion)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Residencia.Estado)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Residencia.Estado)
+            </dd>
+
+        </dl>
+    </div>
+    <br />
+    <br />
+    <p>
+        <a href="@Url.Action("Details", "EstadoCuenta", new {id = Model.ID})" class="regresar">Regresar</a>
+    </p>
+</div>

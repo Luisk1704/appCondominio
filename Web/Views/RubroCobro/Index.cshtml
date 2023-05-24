@@ -1,0 +1,79 @@
+﻿@model IEnumerable<Infraestructure.Models.RubroCobro>
+@{
+    string abc = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+}
+<div class="tabla">
+    <p>
+        <a href="@Url.Action("Create", "RubroCobro")" class="regresar">Crear <strong class=".icono">+</strong></a>
+    </p>
+    <br />
+    <br />
+    <div class="abc row">
+        <button onclick="getByLetra(null)" class="letra col"><strong>Todos</strong></button>
+        @foreach (char item in abc)
+        {
+            <button name="boton" onclick="getByLetra('@item')" class="letra col boton"><strong>@item</strong></button>
+        }
+        @*@for (int i = 0; i < abc.Length; i++)
+        {
+            <button name="boton" onclick="getByLetra('@abc[i]')" class="letra col boton"><strong>@abc[i]</strong></button>
+        }*@
+    </div>
+    <br />
+    <br />
+    <div id="resultado">
+        <table class="table text-light">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Nombre)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Descripcion)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Costo)
+                </th>
+                <th>
+                </th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Descripcion)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Costo)
+                    </td>
+                    <td>
+                        <a href="@Url.Action("Edit", "RubroCobro", new { id = item.ID})" class="details">Editar</a>
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+</div>
+
+@section Scripts{    
+    <script type="text/javascript">
+        function getByLetra(letra) {
+            var parametro = ''+letra+''
+            $.ajax({
+                method: 'GET',
+                url: '/RubroCobro/RubrosXLetra',
+                data: { 'letra': parametro },
+                success: function (response) {
+                    $('#resultado').html('');
+                    $('#resultado').html(response);
+                }, error: function (xhr, status, error) {
+                    console.log('Error' + error + ',No Error' + xhr.status);
+                }
+            })
+        }
+    </script>
+}

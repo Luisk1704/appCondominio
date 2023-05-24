@@ -1,0 +1,75 @@
+﻿@model IEnumerable<Infraestructure.Models.EstadoCuenta>
+
+<table class="table text-light">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Residencia.Usuario)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Mes)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PlanCobro)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Monto)
+        </th>
+        @*<th></th>*@
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Residencia.Usuario.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Mes)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PlanCobro.Descripcion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Monto)
+            </td>
+            @*<td>
+                    @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+                    @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+                </td>*@
+        </tr>
+    }
+    <tr>
+        <td class="border-0">
+        </td>
+        <td class="border-0">
+        </td>
+        <td style="color: aquamarine">
+            <strong>Total Deudas:</strong>
+        </td>
+        <td>
+            @{
+                decimal suma = 0;
+                if (((int)ViewBag.Mes) > 0)
+                {
+                    foreach (var item in new ApplicationCore.Services.ServiceEstadoCuenta().GetEstadosByMesPendientes((int)ViewBag.Mes))
+                    {
+                        suma += item.Monto;
+                    }
+                }
+                else {
+                    foreach (var item in new ApplicationCore.Services.ServiceEstadoCuenta().GetPendientes())
+                    {
+                        suma += item.Monto;
+                    }
+                }
+            }
+            <strong>₡@suma</strong>
+        </td>
+        @*<td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+                @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+            </td>*@
+    </tr>
+</table>
